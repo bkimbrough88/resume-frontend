@@ -4,8 +4,8 @@ import './index.css';
 import User from "./components/user/user";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <User domain={window.location.hostname} />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <User domain={window.location.hostname} />
+    </React.StrictMode>,
+    document.getElementById('root')
 );

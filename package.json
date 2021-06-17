@@ -1,26 +1,13 @@
 {
-  "name": "resume-frontend",
-  "author": "Brandon Kimbrough",
-  "description": "Frontend to display a resume",
+  "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "license": "GPL-3.0-or-later",
-  "homepage": "https://github.com/bkimbrough88/resume-frontend#readme",
+  "proxy": "https://resume-api.thekimbroughs.net",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bkimbrough88/resume-frontend.git"
-  },
-  "keywords": [
-    "resume"
-  ],
-  "bugs": {
-    "url": "https://github.com/bkimbrough88/resume-frontend/issues"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +28,6 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "web-vitals": "^1.1.2"
@@ -51,10 +37,10 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.12.2",
+    "@types/node": "^12.20.15",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "react-scripts": "^4.0.3",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.3"
   }
 }
