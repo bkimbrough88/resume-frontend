@@ -41,7 +41,7 @@ class User extends React.Component<UserPropsModel, UserStateModel> {
         super(props);
 
         // Get the first part of the subdomain, such as 'brandon' from 'brandon.thekimbroughs.net'
-        const userId: string = props.domain.split('.')[0]
+        const userId: string = props.domain.split('.')[0] === 'localhost' ? 'brandon' : props.domain.split('.')[0]
 
         this.state = {
             user: {
@@ -91,6 +91,53 @@ class User extends React.Component<UserPropsModel, UserStateModel> {
 
     render() {
         const user : UserModel = this.state.user
+
+        let summary
+        if (user.summary !== undefined) {
+            summary = <p id="Summary" className="summary-text">{user.summary}</p>
+        }
+
+        let email
+        if (user.email !== undefined) {
+            email = <p id="email" className="contact-info-text"><a href={"mailto:" + user.email}>{user.email} <img alt="email" src="https://img.icons8.com/color/24/000000/send-mass-email.png"/></a></p>
+        }
+
+        let phone
+        if (user.phone_number !== undefined) {
+            phone = <p id="phone" className="contact-info-text"> {user.phone_number} <img alt="phone" src="https://img.icons8.com/color/24/000000/phone-message.png"/> </p>
+        }
+
+        let location
+        if (user.location !== undefined) {
+            location = <p id="location" className="contact-info-text"> {user.location} <img alt="location" src="https://img.icons8.com/ultraviolet/24/000000/marker.png"/> </p>
+        }
+
+        let linkedin
+        if (user.linkedin !== undefined) {
+            linkedin = <p id="linkedin" className="contact-info-text"> <a href={user.linkedin}> {this.getUrlDisplayName(user.linkedin)} <img alt="linkedin" src="https://img.icons8.com/color/24/000000/linkedin.png"/> </a> </p>
+        }
+
+        let github
+        if (user.github !== undefined) {
+            github = <p id="github" className="contact-info-text"> <a href={user.github}> {this.getUrlDisplayName(user.github || "")} <img alt="github" src="https://img.icons8.com/color/24/000000/github--v1.png"/> </a> </p>
+        }
+
+        let certifications
+        if (user.certifications !== undefined && user.certifications.length > 0)
+            certifications = <Certifications certs={user.certifications} />
+
+        let degrees
+        if (user.degrees !== undefined && user.degrees.length > 0)
+            degrees = <Degrees degrees={user.degrees} />
+
+        let experience
+        if (user.experience !== undefined && user.experience.length > 0)
+            experience = <Experience experience={user.experience} />
+
+        let skills
+        if (user.skills !== undefined && user.skills.length > 0)
+            skills = <Skills skills={user.skills} />
+
         return (
             <div id="Margin" className="margin">
                 <div id="Summary" className="grid-container-3">
@@ -99,53 +146,20 @@ class User extends React.Component<UserPropsModel, UserStateModel> {
                     </div>
                     <div id="NameAndDescription" className="grid-child">
                         <p id="Name" className="name-text">{user.given_name || ""} {user.sur_name || ""}</p>
-                        {user.summary !== undefined} ? (
-                        <p id="Summary" className="summary-text">{user.summary || ""}</p>
-                        ) : ()
+                        {summary}
                     </div>
                     <div id="ContactInfo" className="grid-child contact-info-area">
-                        {user.email !== undefined} ? (
-                        <p id="email" className="contact-info-text">
-                            <a href={"mailto:" + user.email}>
-                                {user.email} <img alt="email"
-                                                  src="https://img.icons8.com/color/24/000000/send-mass-email.png"/>
-                            </a>
-                        </p>
-                        ) : ()
-                        {user.phone_number !== undefined} ? (
-                        <p id="phone" className="contact-info-text">
-                            {user.phone_number} <img alt="phone"
-                                                     src="https://img.icons8.com/color/24/000000/phone-message.png"/>
-                        </p>
-                        ) : ()
-                        {user.location !== undefined} ? (
-                        <p id="location" className="contact-info-text">
-                            {user.location} <img alt="location"
-                                                 src="https://img.icons8.com/ultraviolet/24/000000/marker.png"/>
-                        </p>
-                        ) : ()
-                        {user.linkedin !== undefined} ? (
-                        <p id="linkedin" className="contact-info-text">
-                            <a href={user.linkedin}>
-                                {this.getUrlDisplayName(user.linkedin || "")} <img alt="linkedin"
-                                                                             src="https://img.icons8.com/color/24/000000/linkedin.png"/>
-                            </a>
-                        </p>
-                        ) : ()
-                        {user.github !== undefined} ? (
-                        <p id="github" className="contact-info-text">
-                            <a href={user.github}>
-                                {this.getUrlDisplayName(user.github || "")} <img alt="github"
-                                                                           src="https://img.icons8.com/color/24/000000/github--v1.png"/>
-                            </a>
-                        </p>
-                        ) : ()
+                        {email}
+                        {phone}
+                        {location}
+                        {linkedin}
+                        {github}
                     </div>
                 </div>
-                <Certifications certs={user.certifications} />
-                <Degrees degrees={user.degrees} />
-                <Experience experience={user.experience} />
-                <Skills skills={user.skills} />
+                {certifications}
+                {degrees}
+                {experience}
+                {skills}
             </div>
         );
     }
