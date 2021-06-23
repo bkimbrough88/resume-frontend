@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import Certifications from "./certifications";
+import Skills from "./skill";
 
 test('renders learn react link', () => {
-    render(<Certifications />);
+    render(<Skills />);
 });
